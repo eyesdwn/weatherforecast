@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as operations from "../../redux/operations";
 import * as selectors from "../../redux/selectors";
+import styles from "./SearchBar.module.css";
 
 class SearchBar extends Component {
   state = {
@@ -31,16 +32,18 @@ class SearchBar extends Component {
     const { city } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={styles.form}>
           <input
             type="text"
+            placeholder="Town/City"
             value={city}
+            className={styles.searchInput}
             onChange={this.handleChange}
             autoComplete="off"
             autoFocus
           />
 
-          <button type="submit">Search</button>
+          <button type="submit" className={styles.submitButton}></button>
         </form>
       </div>
     );

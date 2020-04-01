@@ -24,7 +24,7 @@ export const fetchByLocation = () => dispatch => {
 
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=50&lon=30&appid=${APP_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=50&lon=30&appid=${APP_KEY}&units=metric`
     )
     .then(response => {
       dispatch(fetchByLocationSuccess(response.data));
@@ -39,7 +39,7 @@ export const fetchByCity = city => dispatch => {
 
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_KEY}&units=metric`
     )
     .then(response => {
       dispatch(fetchByCitySuccess(response.data));

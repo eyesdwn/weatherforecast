@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
 import Nav from "../Nav/Nav";
-import AboutPage from "../../pages/About/AboutPage";
+import AboutPage from "../../pages/AboutPage/AboutPage";
 import ForecastPage from "../../pages/ForecastPage/ForecastPage";
 import UsefulLinksPage from "../../pages/UsefulLinksPage/UsefulLinksPage";
 import HourlyPage from "../../pages/HourlyPage/HourlyPage";
@@ -14,12 +14,20 @@ const divStyle = {
   padding: "200px 30px"
 };
 
+const divHeader = {
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "20px"
+};
+
 class App extends Component {
   render() {
     return (
       <>
-        <Logo />
-        <SearchBar />
+        <div style={divHeader}>
+          <Logo />
+          <SearchBar />
+        </div>
         <div style={divStyle}>
           <Nav />
           <Switch>

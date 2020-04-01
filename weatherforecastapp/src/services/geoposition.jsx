@@ -21,6 +21,6 @@ function success(position) {
   fetchByLocation(latitudeToFixed, longitudeToFixed).then(data => {
     let cityName = data.name;
 
-    fetchAndRenderCityByQuery(cityName);
+    // fetchAndRenderCityByQuery(cityName);
   });
 }

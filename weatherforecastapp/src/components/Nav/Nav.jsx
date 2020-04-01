@@ -16,7 +16,7 @@ const StyledList = styled.ul`
   margin: 0;
   list-style: none;
   font-family: sans-serif;
-  width: 140px;
+  width: 15%;
   padding: 5px;
   &:hover ${StyledSubList} {
     display: block;
@@ -28,13 +28,13 @@ const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
   padding: 8px 16px;
-  color: black;
+  color: rgb(58, 57, 57);
   text-decoration: none;
   &:hover {
-    color: #ff4081;
+    color: grey;
   }
   &.${activeClassName} {
-    color: #ff4081;
+    color: grey;
   }
 `;
 

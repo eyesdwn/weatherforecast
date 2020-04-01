@@ -1,0 +1,37 @@
+.weatherData {
+  width: 80%;
+  color: rgb(58, 57, 57);
+}
+.cityName,
+.description {
+  font-family: sans-serif;
+  font-weight: 300;
+  margin: 0;
+  font-size: 28px;
+}
+.mainInfo {
+  text-align: center;
+}
+.temp {
+  font-size: 70px;
+  font-family: sans-serif;
+  margin: 0;
+  font-weight: 100;
+}
+.weatherDataList {
+  font-family: sans-serif;
+  list-style: none;
+  display: flex;
+  margin: 0 auto;
+  padding-left: 90px;
+  padding-top: 35px;
+}
+.listItem {
+  justify-content: space-between;
+  padding: 0 20px;
+  text-align: center;
+  border-right: 1px solid rgb(58, 57, 57);
+}
+.listItem:last-child {
+  border-right: none;
+}

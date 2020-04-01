@@ -3,7 +3,7 @@ import React from "react";
 const logoStyle = {
   fontFamily: "sans-serif",
   fontSize: "24px",
-  color: "#3a3939",
+  color: "rgb(58, 57, 57)",
   margin: "0"
   // marginLeft: "10px"
 };

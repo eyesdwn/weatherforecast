@@ -11,7 +11,9 @@ import FutureForecastPage from "../../pages/7DaysPage/7DaysPage";
 
 const divStyle = {
   display: "flex",
-  padding: "200px 30px"
+  padding: "200px 30px",
+  width: "1200px",
+  margin: "0 auto"
 };
 
 const divHeader = {

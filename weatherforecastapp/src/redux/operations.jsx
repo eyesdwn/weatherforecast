@@ -24,7 +24,7 @@ export const fetchByLocation = () => dispatch => {
 
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=50&lon=30&appid=${APP_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=50.43&lon=30.52&appid=${APP_KEY}&units=metric`
     )
     .then(response => {
       dispatch(fetchByLocationSuccess(response.data));

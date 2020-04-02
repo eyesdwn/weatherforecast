@@ -9,11 +9,24 @@ const weatherReducer = (state = [], { type, payload }) => {
     case ActionType.FETCH_BY_CITY_SUCCESS:
       return payload.data;
 
-    case ActionType.FETCH_FOR_7DAYS_SUCCESS:
+    // case ActionType.FETCH_FOR_7DAYS_SUCCESS:
+    //   return payload.data;
+
+    // case ActionType.FETCH_HOURLY_SUCCESS:
+    //   return [...state, payload.data];
+
+    default:
+      return state;
+  }
+};
+
+const weatherFor5DaysReducer = (state = [], { type, payload }) => {
+  switch (type) {
+    case ActionType.FETCH_FOR_5DAYS_SUCCESS:
       return payload.data;
 
-    case ActionType.FETCH_HOURLY_SUCCESS:
-      return [...state, payload.data];
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_SUCCESS:
+      return payload.data;
 
     default:
       return state;
@@ -24,18 +37,18 @@ const loadingReducer = (state = false, { type, payload }) => {
   switch (type) {
     case ActionType.FETCH_BY_CITY_START:
     case ActionType.FETCH_BY_LOCATION_START:
-    case ActionType.FETCH_FOR_7DAYS_START:
-    case ActionType.FETCH_HOURLY_START:
+    case ActionType.FETCH_FOR_5DAYS_START:
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_START:
       return true;
 
     case ActionType.FETCH_BY_CITY_SUCCESS:
     case ActionType.FETCH_BY_CITY_ERROR:
     case ActionType.FETCH_BY_LOCATION_SUCCESS:
     case ActionType.FETCH_BY_LOCATION_ERROR:
-    case ActionType.FETCH_FOR_7DAYS_SUCCESS:
-    case ActionType.FETCH_FOR_7DAYS_ERROR:
-    case ActionType.FETCH_HOURLY_SUCCESS:
-    case ActionType.FETCH_HOURLY_ERROR:
+    case ActionType.FETCH_FOR_5DAYS_SUCCESS:
+    case ActionType.FETCH_FOR_5DAYS_ERROR:
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_SUCCESS:
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_ERROR:
       return false;
 
     default:
@@ -47,14 +60,14 @@ const errorReducer = (state = null, { type, payload }) => {
   switch (type) {
     case ActionType.FETCH_BY_CITY_START:
     case ActionType.FETCH_BY_LOCATION_START:
-    case ActionType.FETCH_FOR_7DAYS_START:
-    case ActionType.FETCH_HOURLY_START:
+    case ActionType.FETCH_FOR_5DAYS_START:
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_START:
       return null;
 
     case ActionType.FETCH_BY_CITY_ERROR:
     case ActionType.FETCH_BY_LOCATION_ERROR:
-    case ActionType.FETCH_FOR_7DAYS_ERROR:
-    case ActionType.FETCH_HOURLY_ERROR:
+    case ActionType.FETCH_FOR_5DAYS_ERROR:
+    case ActionType.FETCH_FOR_5_DAYS_BY_CITY_ERROR:
       return payload.error;
 
     default:
@@ -64,6 +77,7 @@ const errorReducer = (state = null, { type, payload }) => {
 
 export default combineReducers({
   weather: weatherReducer,
+  weatherFor5days: weatherFor5DaysReducer,
   loading: loadingReducer,
   error: errorReducer
 });

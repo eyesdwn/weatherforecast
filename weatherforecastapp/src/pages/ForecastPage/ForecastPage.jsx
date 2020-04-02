@@ -7,13 +7,12 @@ import style from "./ForecastPage.module.css";
 class ForecastPage extends Component {
   componentDidMount() {
     this.props.fetchByLocation();
-  }
-  componentDidUpdate() {
-    console.log("updated!");
+    this.props.fetchFor5daysByLocation();
   }
 
   render() {
     const weather = this.props.weather.weather;
+    const weatherFor5days = this.props.weather.weatherFor5days;
     if (weather.weather) {
       console.log(weather);
     }
@@ -32,6 +31,10 @@ class ForecastPage extends Component {
                   .split(/\s+/)
                   .map(word => word[0].toUpperCase() + word.substring(1))
                   .join(" ")}
+              </p>
+              <p>
+                Time {new Date(weather.dt * 1000).getHours()}:
+                {new Date(weather.dt * 1000).getMinutes()}
               </p>
             </div>
 
@@ -66,6 +69,83 @@ class ForecastPage extends Component {
                 </p>
               </li>
             </ul>
+            {weatherFor5days.list && (
+              <>
+                <h1>5 Days</h1>
+                <div className={style.forecastTable}>
+                  <div className={style.forecastListWrapper}>
+                    <p>Time</p>
+                    <ul className={style.forecastList}>
+                      {/* {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {item.weather[0].dt}
+                        </li>
+                      ))} */}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Description</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {item.weather[0].description}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Temp</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {Math.floor(item.main.temp)}℃
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Feels Like</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {Math.floor(item.main.feels_like)}℃
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Humidity</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {item.main.humidity}%
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Wind</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {item.wind.speed.toFixed(1)} meter/sec
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={style.forecastListWrapper}>
+                    <p>Pressure</p>
+                    <ul className={style.forecastList}>
+                      {weatherFor5days.list.map(item => (
+                        <li className={style.forecastListItem}>
+                          {item.main.pressure}hPa
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
       </>
@@ -74,11 +154,13 @@ class ForecastPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  weather: selectors.getWeather(state)
+  weather: selectors.getWeather(state),
+  weatherFor5days: selectors.getWeatherFor5days(state)
 });
 
 const mapDispatchToProps = {
-  fetchByLocation: operations.fetchByLocation
+  fetchByLocation: operations.fetchByLocation,
+  fetchFor5daysByLocation: operations.fetchFor5daysByLocation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForecastPage);

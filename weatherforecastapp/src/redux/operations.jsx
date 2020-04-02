@@ -7,12 +7,12 @@ import {
   fetchByCityStart,
   fetchByCitySuccess,
   fetchByCityError,
-  fetchFor7daysStart,
-  fetchFor7daysSuccess,
-  fetchFor7daysError,
-  fetchHourlyStart,
-  fetchHourlySuccess,
-  fetchHourlyError
+  fetchFor5daysStart,
+  fetchFor5daysSuccess,
+  fetchFor5daysError,
+  fetchFor5daysByCityStart,
+  fetchFor5daysByCitySuccess,
+  fetchFor5daysByCityError
 } from "./actions";
 
 const APP_KEY = "9adc8c21da16df48ff74ef05a9727c0f";
@@ -49,28 +49,47 @@ export const fetchByCity = city => dispatch => {
     });
 };
 
-export const fetchFor7days = () => dispatch => {
-  dispatch(fetchFor7daysStart());
+export const fetchFor5daysByLocation = () => dispatch => {
+  dispatch(fetchFor5daysStart());
 
   axios
-    .get(`url{days}`)
+    .get(
+      `https://api.openweathermap.org/data/2.5/forecast?lat=50.43&lon=30.52&appid=${APP_KEY}&units=metric`
+    )
     .then(response => {
-      dispatch(fetchFor7daysSuccess(response.data));
+      dispatch(fetchFor5daysSuccess(response.data));
     })
     .catch(error => {
-      dispatch(fetchFor7daysError(error));
+      dispatch(fetchFor5daysError(error));
     });
 };
 
-export const fetchHourly = () => dispatch => {
-  dispatch(fetchHourlyStart());
+export const fetchFor5daysByCity = city => dispatch => {
+  dispatch(fetchFor5daysByCityStart());
 
   axios
-    .get(`url{hourly}`)
+    .get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APP_KEY}&units=metric`
+    )
     .then(response => {
-      dispatch(fetchHourlySuccess(response.data));
+      dispatch(fetchFor5daysByCitySuccess(response.data));
     })
     .catch(error => {
-      dispatch(fetchHourlyError(error));
+      dispatch(fetchFor5daysByCityError(error));
     });
 };
+
+// export const fetchFor5daysByCity = () => dispatch => {
+//   dispatch(fetchFor5daysByCityStart());
+
+//   axios
+//     .get(
+//       `https://api.openweathermap.org/data/2.5/forecast/hourly?q=London&appid=${APP_KEY}&units=metric`
+//     )
+//     .then(response => {
+//       dispatch(fetchFor5daysByCitySuccess(response.data));
+//     })
+//     .catch(error => {
+//       dispatch(fetchFor5daysByCityError(error));
+//     });
+// };

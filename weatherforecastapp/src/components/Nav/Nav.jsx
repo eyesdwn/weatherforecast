@@ -14,10 +14,9 @@ const StyledSubList = styled.ul`
 const StyledList = styled.ul`
   padding: 0;
   margin: 0;
+  width: 140px;
   list-style: none;
   font-family: sans-serif;
-  width: 15%;
-  padding: 5px;
   &:hover ${StyledSubList} {
     display: block;
   }

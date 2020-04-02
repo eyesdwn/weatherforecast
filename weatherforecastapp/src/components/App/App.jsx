@@ -8,29 +8,17 @@ import ForecastPage from "../../pages/ForecastPage/ForecastPage";
 import UsefulLinksPage from "../../pages/UsefulLinksPage/UsefulLinksPage";
 import HourlyPage from "../../pages/HourlyPage/HourlyPage";
 import FutureForecastPage from "../../pages/7DaysPage/7DaysPage";
-
-const divStyle = {
-  display: "flex",
-  padding: "200px 30px",
-  width: "1200px",
-  margin: "0 auto"
-};
-
-const divHeader = {
-  display: "flex",
-  justifyContent: "space-between",
-  margin: "20px"
-};
+import style from "./app.module.css";
 
 class App extends Component {
   render() {
     return (
       <>
-        <div style={divHeader}>
+        <div className={style.appHeader}>
           <Logo />
           <SearchBar />
         </div>
-        <div style={divStyle}>
+        <div className={style.main}>
           <Nav />
           <Switch>
             <Route exact path="/" component={ForecastPage} />

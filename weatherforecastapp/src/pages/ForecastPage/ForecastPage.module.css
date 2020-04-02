@@ -1,5 +1,5 @@
 .weatherData {
-  width: 80%;
+  margin: 0 auto;
   color: rgb(58, 57, 57);
 }
 .cityName,
@@ -23,7 +23,6 @@
   list-style: none;
   display: flex;
   margin: 0 auto;
-  padding-left: 90px;
   padding-top: 35px;
 }
 .listItem {
@@ -34,4 +33,25 @@
 }
 .listItem:last-child {
   border-right: none;
+}
+
+/* ///////////////// */
+
+.forecastTable {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.forecastList {
+  font-family: sans-serif;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+.forecastListItem {
+  padding-bottom: 25px;
+}
+.forecastListWrapper {
+  border-right: 1px solid rgb(58, 57, 57);
+  padding-right: 28px;
 }

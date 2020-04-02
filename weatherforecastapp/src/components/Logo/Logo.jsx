@@ -1,13 +1,30 @@
 import React from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import style from "./Logo.module.css";
+import { connect } from "react-redux";
+import * as operations from "../../redux/operations";
 
-const logoStyle = {
-  fontFamily: "sans-serif",
-  fontSize: "24px",
-  color: "rgb(58, 57, 57)",
-  margin: "0"
-  // marginLeft: "10px"
+const StyledLogoLink = styled(NavLink)`
+  font-family: sans-serif;
+  font-size: 24px;
+  padding-left: 20px;
+
+  color: rgb(58, 57, 57);
+  text-decoration: none;
+  margin: 0;
+`;
+
+const Logo = ({ fetchByLocation }) => (
+  <div className={style.logoContainer} onClick={fetchByLocation}>
+    <StyledLogoLink exact to="/">
+      WeatherForecast
+    </StyledLogoLink>
+  </div>
+);
+
+const mapDispatchToProps = {
+  fetchByLocation: operations.fetchByLocation
 };
 
-const Logo = () => <h1 style={logoStyle}>WeatherForecast</h1>;
-
-export default Logo;
+export default connect(null, mapDispatchToProps)(Logo);

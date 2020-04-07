@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import * as API from "../services/weatherAPI";
 import {
   fetchByLocationStart,
   fetchByLocationSuccess,
@@ -15,81 +14,50 @@ import {
   fetchFor5daysByCityError
 } from "./actions";
 
-const APP_KEY = "9adc8c21da16df48ff74ef05a9727c0f";
+export const fetchByLocation = () => async dispatch => {
+  try {
+    dispatch(fetchByLocationStart());
 
-// const url = `https://api.openweathermap.org/data/2.5/weather?lat=50&lon=30&appid=${APP_KEY}`;
+    const weatherData = await API.getWeatherByLocation();
 
-export const fetchByLocation = () => dispatch => {
-  dispatch(fetchByLocationStart());
-
-  axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=50.43&lon=30.52&appid=${APP_KEY}&units=metric`
-    )
-    .then(response => {
-      dispatch(fetchByLocationSuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchByLocationError(error));
-    });
+    dispatch(fetchByLocationSuccess(weatherData));
+  } catch (error) {
+    dispatch(fetchByLocationError(error));
+  }
 };
 
-export const fetchByCity = city => dispatch => {
-  dispatch(fetchByCityStart());
+export const fetchByCity = city => async dispatch => {
+  try {
+    dispatch(fetchByCityStart());
 
-  axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APP_KEY}&units=metric`
-    )
-    .then(response => {
-      dispatch(fetchByCitySuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchByCityError(error));
-    });
+    const weatherData = await API.getWeatherByCity(city);
+
+    dispatch(fetchByCitySuccess(weatherData));
+  } catch (error) {
+    dispatch(fetchByCityError(error));
+  }
 };
 
-export const fetchFor5daysByLocation = () => dispatch => {
-  dispatch(fetchFor5daysStart());
+export const fetchFor5daysByLocation = () => async dispatch => {
+  try {
+    dispatch(fetchFor5daysStart());
 
-  axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=50.43&lon=30.52&appid=${APP_KEY}&units=metric`
-    )
-    .then(response => {
-      dispatch(fetchFor5daysSuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchFor5daysError(error));
-    });
+    const sortedWeatherDataByDate = await API.getWeatherFor5days();
+
+    dispatch(fetchFor5daysSuccess(sortedWeatherDataByDate));
+  } catch (error) {
+    dispatch(fetchFor5daysError(error));
+  }
 };
 
-export const fetchFor5daysByCity = city => dispatch => {
-  dispatch(fetchFor5daysByCityStart());
+export const fetchFor5daysByCity = city => async dispatch => {
+  try {
+    dispatch(fetchFor5daysByCityStart());
 
-  axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APP_KEY}&units=metric`
-    )
-    .then(response => {
-      dispatch(fetchFor5daysByCitySuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchFor5daysByCityError(error));
-    });
+    const sortedWeatherDataByDate = await API.getWeatherFor5daysByCity(city);
+
+    dispatch(fetchFor5daysByCitySuccess(sortedWeatherDataByDate));
+  } catch (error) {
+    dispatch(fetchFor5daysByCityError(error));
+  }
 };
-
-// export const fetchFor5daysByCity = () => dispatch => {
-//   dispatch(fetchFor5daysByCityStart());
-
-//   axios
-//     .get(
-//       `https://api.openweathermap.org/data/2.5/forecast/hourly?q=London&appid=${APP_KEY}&units=metric`
-//     )
-//     .then(response => {
-//       dispatch(fetchFor5daysByCitySuccess(response.data));
-//     })
-//     .catch(error => {
-//       dispatch(fetchFor5daysByCityError(error));
-//     });
-// };

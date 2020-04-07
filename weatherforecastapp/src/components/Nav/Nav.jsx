@@ -54,15 +54,6 @@ const Nav = () => (
       <StyledNavLink exact to="/">
         Forecast
       </StyledNavLink>
-      <StyledSubList>
-        <StyledLi>
-          <StyledNavLink to="/hourly">Hourly</StyledNavLink>
-        </StyledLi>
-
-        <StyledLi>
-          <StyledNavLink to="/7_days_forecast">7 Days</StyledNavLink>
-        </StyledLi>
-      </StyledSubList>
     </StyledLi>
     <StyledLi>
       <StyledNavLink to="/about">About</StyledNavLink>

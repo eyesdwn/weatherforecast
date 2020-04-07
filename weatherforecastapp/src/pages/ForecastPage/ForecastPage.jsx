@@ -3,6 +3,17 @@ import { connect } from "react-redux";
 import * as operations from "../../redux/operations";
 import * as selectors from "../../redux/selectors";
 import style from "./ForecastPage.module.css";
+// import moment from "moment";
+
+var days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
 
 class ForecastPage extends Component {
   componentDidMount() {
@@ -13,8 +24,9 @@ class ForecastPage extends Component {
   render() {
     const weather = this.props.weather.weather;
     const weatherFor5days = this.props.weather.weatherFor5days;
+
     if (weather.weather) {
-      console.log(weather);
+      console.log(weatherFor5days);
     }
 
     return (
@@ -23,18 +35,15 @@ class ForecastPage extends Component {
           <div className={style.weatherData}>
             <div className={style.mainInfo}>
               <h1 className={style.cityName}>
-                {weather.name}, {weather.sys.country}
+                {weather.city}, {weather.country}
               </h1>
-              <p className={style.temp}>{Math.floor(weather.main.temp)}℃</p>
-              <p className={style.description}>
-                {weather.weather[0].description
-                  .split(/\s+/)
-                  .map(word => word[0].toUpperCase() + word.substring(1))
-                  .join(" ")}
-              </p>
+              <p className={style.temp}>{weather.temp}℃</p>
+              <p className={style.description}>{weather.description}</p>
               <p>
-                Time {new Date(weather.dt * 1000).getHours()}:
-                {new Date(weather.dt * 1000).getMinutes()}
+                Time{" "}
+                {(weather.hours < 10 && `0${weather.hours}`) || weather.hours}:
+                {(weather.minutes < 10 && `0${weather.minutes}`) ||
+                  weather.minutes}
               </p>
             </div>
 
@@ -43,44 +52,50 @@ class ForecastPage extends Component {
                 <p>Visibility</p> <p>{weather.visibility} meters</p>
               </li>
               <li className={style.listItem}>
-                <p>Feels Like</p> <p>{Math.floor(weather.main.feels_like)}℃</p>
+                <p>Feels Like</p> <p>{weather.feelsLike}℃</p>
               </li>
               <li className={style.listItem}>
-                <p>Pressure</p> <p>{weather.main.pressure} hPa</p>
+                <p>Pressure</p> <p>{weather.pressure} hPa</p>
               </li>
               <li className={style.listItem}>
-                <p>Humidity</p> <p>{weather.main.humidity} %</p>
+                <p>Humidity</p> <p>{weather.humidity} %</p>
               </li>
               <li className={style.listItem}>
-                <p>Wind</p> <p>{weather.wind.speed} meter/sec</p>
+                <p>Wind</p> <p>{weather.wind} meter/sec</p>
               </li>
               <li className={style.listItem}>
                 <p>Sunrise</p>
-                <p>
-                  {new Date(weather.sys.sunrise * 1000).getHours()}:
-                  {new Date(weather.sys.sunrise * 1000).getMinutes()}
-                </p>
+                <p>{weather.sunrise}</p>
               </li>
               <li className={style.listItem}>
                 <p>Sunset</p>
-                <p>
-                  {new Date(weather.sys.sunset * 1000).getHours()}:
-                  {new Date(weather.sys.sunset * 1000).getMinutes()}
-                </p>
+                <p>{weather.sunset}</p>
               </li>
             </ul>
+            {weatherFor5days.list && (
+              <ul>
+                <li>
+                  <p>Day, Date</p>
+                  <p>Icon</p>
+                  <p>Min</p>
+                  <p>Max</p>
+                </li>
+              </ul>
+            )}
             {weatherFor5days.list && (
               <>
                 <h1>5 Days</h1>
                 <div className={style.forecastTable}>
                   <div className={style.forecastListWrapper}>
-                    <p>Time</p>
+                    <p>Day</p>
                     <ul className={style.forecastList}>
-                      {/* {weatherFor5days.list.map(item => (
+                      {weatherFor5days.list.map(item => (
                         <li className={style.forecastListItem}>
-                          {item.weather[0].dt}
+                          {/* {new Date(item.dt * 1000).getDate()}th of
+                          {months[new Date(item.dt * 1000).getMonth()]} */}
+                          {days[new Date(item.dt * 1000).getDay()]}
                         </li>
-                      ))} */}
+                      ))}
                     </ul>
                   </div>
                   <div className={style.forecastListWrapper}>
@@ -156,10 +171,13 @@ class ForecastPage extends Component {
 const mapStateToProps = state => ({
   weather: selectors.getWeather(state),
   weatherFor5days: selectors.getWeatherFor5days(state)
+  // sortedWeatherDataByDate: selectors.getWeatherDataByTime(state)
 });
 
 const mapDispatchToProps = {
   fetchByLocation: operations.fetchByLocation,
+  // fetchByLocation: weatherActions.fetchWeatherByLocation,
+  // fetchFor5daysByLocation: weatherActions.fetchWeatherFor5daysByLocation
   fetchFor5daysByLocation: operations.fetchFor5daysByLocation
 };
 

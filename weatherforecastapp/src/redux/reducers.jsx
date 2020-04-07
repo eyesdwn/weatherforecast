@@ -9,12 +9,6 @@ const weatherReducer = (state = [], { type, payload }) => {
     case ActionType.FETCH_BY_CITY_SUCCESS:
       return payload.data;
 
-    // case ActionType.FETCH_FOR_7DAYS_SUCCESS:
-    //   return payload.data;
-
-    // case ActionType.FETCH_HOURLY_SUCCESS:
-    //   return [...state, payload.data];
-
     default:
       return state;
   }

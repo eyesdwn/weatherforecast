@@ -3,14 +3,11 @@
   width: 140px;
   border: none;
   color: rgb(58, 57, 57);
-  /* background-image: url(./images/icon.png);
-  background-repeat: no-repeat; */
   outline: none;
   padding-bottom: 5px;
   margin: 0 auto;
   background-color: transparent;
   font-size: 16px;
-  /* text-align: center; */
 }
 .searchInput::placeholder {
   color: rgb(58, 57, 57);

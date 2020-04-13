@@ -15,16 +15,28 @@ const StyledLogoLink = styled(NavLink)`
   margin: 0;
 `;
 
-const Logo = ({ fetchByLocation }) => (
-  <div className={style.logoContainer} onClick={fetchByLocation}>
-    <StyledLogoLink exact to="/">
-      WeatherForecast
-    </StyledLogoLink>
-  </div>
-);
+const Logo = ({ fetchByLocation, fetchFor5daysByLocation }) => {
+  const fetchData = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude.toFixed(2);
+      const lng = position.coords.longitude.toFixed(2);
+      fetchByLocation(lat, lng);
+      fetchFor5daysByLocation(lat, lng);
+    });
+  };
+
+  return (
+    <div className={style.logoContainer} onClick={fetchData}>
+      <StyledLogoLink exact to="/">
+        WeatherForecast
+      </StyledLogoLink>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
-  fetchByLocation: operations.fetchByLocation
+  fetchByLocation: operations.fetchByLocation,
+  fetchFor5daysByLocation: operations.fetchFor5daysByLocation
 };
 
 export default connect(null, mapDispatchToProps)(Logo);

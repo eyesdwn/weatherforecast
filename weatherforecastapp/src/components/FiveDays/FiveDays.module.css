@@ -1,0 +1,13 @@
+.divFiveDays {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding-top: 50px;
+
+  width: 656px;
+}

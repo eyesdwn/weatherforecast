@@ -14,11 +14,11 @@ import {
   fetchFor5daysByCityError
 } from "./actions";
 
-export const fetchByLocation = () => async dispatch => {
+export const fetchByLocation = (lat, lng) => async dispatch => {
   try {
     dispatch(fetchByLocationStart());
 
-    const weatherData = await API.getWeatherByLocation();
+    const weatherData = await API.getWeatherByLocation(lat, lng);
 
     dispatch(fetchByLocationSuccess(weatherData));
   } catch (error) {
@@ -38,11 +38,11 @@ export const fetchByCity = city => async dispatch => {
   }
 };
 
-export const fetchFor5daysByLocation = () => async dispatch => {
+export const fetchFor5daysByLocation = (lat, lng) => async dispatch => {
   try {
     dispatch(fetchFor5daysStart());
 
-    const sortedWeatherDataByDate = await API.getWeatherFor5days();
+    const sortedWeatherDataByDate = await API.getWeatherFor5days(lat, lng);
 
     dispatch(fetchFor5daysSuccess(sortedWeatherDataByDate));
   } catch (error) {

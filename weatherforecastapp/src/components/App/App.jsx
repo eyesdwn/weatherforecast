@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
-import Nav from "../Nav/Nav";
+// import Nav from "../Nav/Nav";
 import AboutPage from "../../pages/AboutPage/AboutPage";
 import ForecastPage from "../../pages/ForecastPage/ForecastPage";
 import UsefulLinksPage from "../../pages/UsefulLinksPage/UsefulLinksPage";
@@ -19,7 +19,7 @@ class App extends Component {
           <SearchBar />
         </div>
         <div className={style.main}>
-          <Nav />
+          {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={ForecastPage} />
             {/* <Route exact path="/hourly" component={HourlyPage} />

@@ -10,8 +10,16 @@ export const ActionType = {
   FETCH_FOR_5DAYS_ERROR: "FETCH_FOR_5DAYS_ERROR",
   FETCH_FOR_5_DAYS_BY_CITY_START: "FETCH_FOR_5_DAYS_BY_CITY_START",
   FETCH_FOR_5_DAYS_BY_CITY_SUCCESS: "FETCH_FOR_5_DAYS_BY_CITY_SUCCESS",
-  FETCH_FOR_5_DAYS_BY_CITY_ERROR: "FETCH_FOR_5_DAYS_BY_CITY_ERROR"
+  FETCH_FOR_5_DAYS_BY_CITY_ERROR: "FETCH_FOR_5_DAYS_BY_CITY_ERROR",
+  GET_MORE_INFO: "GET_MORE_INFO"
 };
+
+export const getMoreData = data => ({
+  type: ActionType.GET_MORE_INFO,
+  payload: {
+    data
+  }
+});
 
 export const fetchByLocationStart = () => ({
   type: ActionType.FETCH_BY_LOCATION_START

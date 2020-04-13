@@ -26,11 +26,6 @@ class SearchBar extends Component {
     this.setState({
       city: ""
     });
-
-    // this.props.history.push({
-    //   pathname: this.props.location.pathname,
-    //   search: `query=${city}`
-    // });
   };
 
   render() {

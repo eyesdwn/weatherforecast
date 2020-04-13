@@ -20,6 +20,7 @@ const StyledList = styled.ul`
   &:hover ${StyledSubList} {
     display: block;
   }
+  padding-top: 30px;
 `;
 
 const activeClassName = "active";

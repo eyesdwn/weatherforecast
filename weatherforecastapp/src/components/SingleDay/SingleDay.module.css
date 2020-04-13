@@ -1,0 +1,90 @@
+.single_day_card {
+  display: flex;
+  font-family: sans-serif;
+  color: rgb(58, 57, 57);
+  flex-direction: column;
+  margin: 1rem;
+  border: 1px solid transparent;
+  text-align: center;
+  padding: 10px 20px;
+  width: 90px;
+  background-color: rgba(187, 152, 152, 0.4);
+}
+
+.single_day_card:hover {
+  border: 1px solid rgb(58, 57, 57, 0.5);
+}
+
+.p_temp {
+  font-size: 40px;
+  color: rgb(58, 57, 57);
+  font-family: sans-serif;
+  opacity: 1;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.div_min_max {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sign {
+  font-size: 16px;
+  color: rgb(58, 57, 57);
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+
+.small_temp {
+  font-size: 22px;
+  color: rgb(58, 57, 57);
+  /* font-weight: bold; */
+  margin: 0.25rem;
+  text-align: center;
+}
+
+.p_day_now {
+  font-size: 16px;
+  color: rgb(58, 57, 57);
+  font-weight: 500;
+  margin: 0.25rem;
+  text-align: center;
+}
+
+.icon_weather {
+  display: block;
+  margin: 0 auto;
+}
+
+.p_date {
+  font-size: 18px;
+  margin: 0.25rem;
+  color: rgb(58, 57, 57);
+  font-weight: 500;
+  opacity: 1;
+}
+
+.btn_more_info {
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 0.7rem;
+  padding: 0.25rem;
+  font-size: 15px;
+  font-family: Tahoma, sans-serif;
+  font-weight: 300;
+  color: black;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.btn_more_info:hover {
+  background-color: gray;
+  cursor: pointer;
+}

@@ -29,6 +29,11 @@ class FiveDays extends Component {
       hourlyData
     });
 
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth"
+    });
+
     console.log(this.state);
   };
 

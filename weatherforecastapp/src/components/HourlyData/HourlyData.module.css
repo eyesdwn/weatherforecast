@@ -1,0 +1,41 @@
+.moreInfo {
+  width: 100%;
+  overflow-x: auto;
+  font-family: sans-serif;
+  color: rgb(58, 57, 57);
+}
+
+.day {
+  display: flex;
+  border-bottom: 1px solid gray;
+  padding: 0 17px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.day:last-child {
+  border-bottom: none;
+}
+.img {
+  width: 50px;
+  height: 50px;
+}
+
+.iconImg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.tempInfo {
+  font-size: 20px;
+}
+
+.timeInfo {
+  font-size: 18px;
+}
+.iconWrapper {
+  display: flex;
+}
+.dataDetail {
+  margin: 8px 0;
+}

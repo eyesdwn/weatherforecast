@@ -1,4 +1,4 @@
-.single_day_card {
+.singleDayCard {
   display: flex;
   font-family: sans-serif;
   color: rgb(58, 57, 57);
@@ -6,13 +6,20 @@
   margin: 1rem;
   border: 1px solid transparent;
   text-align: center;
-  padding: 10px 20px;
+  padding: 20px 15px 5px 15px;
   width: 90px;
   background-color: rgba(187, 152, 152, 0.4);
 }
 
-.single_day_card:hover {
+.singleDayCard:hover {
   border: 1px solid rgb(58, 57, 57, 0.5);
+}
+/* .single_day_card:active {
+  border: 1px solid rgb(58, 57, 57, 0.5);
+} */
+
+.singleDayCard:hover .btnMoreInfo {
+  color: rgb(58, 57, 57);
 }
 
 .p_temp {
@@ -29,7 +36,7 @@
   margin: 0 auto;
 }
 
-.div_min_max {
+.minMax {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -43,15 +50,14 @@
   margin: 0;
 }
 
-.small_temp {
+.smallTemp {
   font-size: 22px;
   color: rgb(58, 57, 57);
-  /* font-weight: bold; */
   margin: 0.25rem;
   text-align: center;
 }
 
-.p_day_now {
+.dayNow {
   font-size: 16px;
   color: rgb(58, 57, 57);
   font-weight: 500;
@@ -64,7 +70,7 @@
   margin: 0 auto;
 }
 
-.p_date {
+.date {
   font-size: 18px;
   margin: 0.25rem;
   color: rgb(58, 57, 57);
@@ -72,19 +78,22 @@
   opacity: 1;
 }
 
-.btn_more_info {
+.btnMoreInfo {
+  /* display: none; */
   background: transparent;
-  border: 1px solid black;
-  border-radius: 0.7rem;
-  padding: 0.25rem;
+  border: transparent;
+  border-bottom: 1px solid transparent;
+  padding: 5px 0;
+  /* padding: ; */
   font-size: 15px;
-  font-family: Tahoma, sans-serif;
+  font-family: sans-serif;
   font-weight: 300;
-  color: black;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-}
-
-.btn_more_info:hover {
-  background-color: gray;
+  color: transparent;
+  width: 74px;
+  margin: 0 auto;
   cursor: pointer;
 }
+
+/* .btn_more_info:hover {
+  border-bottom: 1px solid rgb(58, 57, 57, 0.7);
+} */

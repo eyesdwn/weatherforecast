@@ -18,8 +18,6 @@ class ForecastPage extends Component {
       const lng = position.coords.longitude.toFixed(2);
       this.props.fetchByLocation(lat, lng);
       this.props.fetchFor5daysByLocation(lat, lng);
-
-      console.log(lat, lng);
     });
   }
 
@@ -28,20 +26,13 @@ class ForecastPage extends Component {
     const weatherFor5days = this.props.weather.weatherFor5days;
     const isLoading = this.props.weather.loading;
 
-    console.log(isLoading);
-
     return (
       <>
         {/* <Nav /> */}
         {isLoading && <Loader />}
         {weather.weather && <CurrentWeather weather={weather} />}
         <div>
-          {weatherFor5days && (
-            <FiveDays
-              weatherFor5days={weatherFor5days}
-              fetchFor5daysByLocation={this.props.fetchFor5daysByLocation}
-            />
-          )}
+          {weatherFor5days && <FiveDays weatherFor5days={weatherFor5days} />}
         </div>
       </>
     );

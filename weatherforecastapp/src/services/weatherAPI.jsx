@@ -83,59 +83,24 @@ export const getWeatherFor5days = async (lat, lng) => {
         defaultLng}&appid=${APP_KEY}&units=metric`
     );
 
-    const weatherData = weatherFor5days.data;
+    const response = weatherFor5days.data;
 
-    const searchAverageTempFromFiveDay = weatherData => {
-      let arrOfFiveDayWeatherObject = [];
-      let arrOfAverageTemp = [];
-      let arrOfAverageHumidity = [];
-      let arrOfPressure = [];
-      let arrOfWindSpeed = [];
-
-      for (let i = 0; i < 5; i++) {
-        let startDay = moment()
-          .add(i, "days")
-          .startOf("day")
-          .format("X");
-
-        let endDay = moment()
-          .add(i, "days")
-          .endOf("day")
-          .format("X");
-        let dayArr = weatherData.list.filter(
-          el => el.dt < endDay && el.dt > startDay
-        );
-        arrOfFiveDayWeatherObject.push(dayArr);
-        let averageTemp = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.temp, 0) / dayArr.length
-        );
-        arrOfAverageTemp.push(averageTemp);
-        let averageHumidity = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.humidity, 0) / dayArr.length
-        );
-        arrOfAverageHumidity.push(averageHumidity);
-        let averagePressure = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.pressure, 0) /
-            dayArr.length /
-            1.33
-        );
-        arrOfPressure.push(averagePressure);
-        let averageWind = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.wind.speed, 0) / dayArr.length
-        );
-        arrOfWindSpeed.push(averageWind);
-      }
-      return {
-        ...weatherData,
-        arrOfFiveDayWeatherObject: arrOfFiveDayWeatherObject,
-        arrOfAverageTemp: arrOfAverageTemp,
-        arrOfAverageHumidity: arrOfAverageHumidity,
-        arrOfPressure: arrOfPressure,
-        arrOfWindSpeed: arrOfWindSpeed
-      };
+    const getDate = data => new Date(data.dt * 1000).getDate();
+    const dates = response.list
+      .map(element => getDate(element))
+      .filter((el, idx, arr) => arr.indexOf(el) === idx);
+    const list = dates
+      .map(el => response.list.filter(elem => getDate(elem) === el))
+      .map(element => ({
+        date: element[0].dt,
+        forecast: element
+      }));
+    const changedData = {
+      ...response,
+      list
     };
 
-    return searchAverageTempFromFiveDay(weatherData);
+    return changedData;
   } catch (error) {
     console.log(error);
   }
@@ -146,59 +111,24 @@ export const getWeatherFor5daysByCity = async city => {
     const weatherFor5days = await axios.get(
       `${BASE_URL}forecast?q=${city}&appid=${APP_KEY}&units=metric`
     );
-    const weatherData = weatherFor5days.data;
+    const response = weatherFor5days.data;
 
-    const searchAverageTempFromFiveDay = weatherData => {
-      let arrOfFiveDayWeatherObject = [];
-      let arrOfAverageTemp = [];
-      let arrOfAverageHumidity = [];
-      let arrOfPressure = [];
-      let arrOfWindSpeed = [];
-
-      for (let i = 0; i < 5; i++) {
-        let startDay = moment()
-          .add(i, "days")
-          .startOf("day")
-          .format("X");
-
-        let endDay = moment()
-          .add(i, "days")
-          .endOf("day")
-          .format("X");
-        let dayArr = weatherData.list.filter(
-          el => el.dt < endDay && el.dt > startDay
-        );
-        arrOfFiveDayWeatherObject.push(dayArr);
-        let averageTemp = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.temp, 0) / dayArr.length
-        );
-        arrOfAverageTemp.push(averageTemp);
-        let averageHumidity = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.humidity, 0) / dayArr.length
-        );
-        arrOfAverageHumidity.push(averageHumidity);
-        let averagePressure = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.main.pressure, 0) /
-            dayArr.length /
-            1.33
-        );
-        arrOfPressure.push(averagePressure);
-        let averageWind = Math.floor(
-          dayArr.reduce((acc, el) => acc + el.wind.speed, 0) / dayArr.length
-        );
-        arrOfWindSpeed.push(averageWind);
-      }
-      return {
-        ...weatherData,
-        arrOfFiveDayWeatherObject: arrOfFiveDayWeatherObject,
-        arrOfAverageTemp: arrOfAverageTemp,
-        arrOfAverageHumidity: arrOfAverageHumidity,
-        arrOfPressure: arrOfPressure,
-        arrOfWindSpeed: arrOfWindSpeed
-      };
+    const getDate = data => new Date(data.dt * 1000).getDate();
+    const dates = response.list
+      .map(element => getDate(element))
+      .filter((el, idx, arr) => arr.indexOf(el) === idx);
+    const list = dates
+      .map(el => response.list.filter(elem => getDate(elem) === el))
+      .map(element => ({
+        date: element[0].dt,
+        forecast: element
+      }));
+    const changedData = {
+      ...response,
+      list
     };
 
-    return searchAverageTempFromFiveDay(weatherData);
+    return changedData;
   } catch (error) {
     console.log(error);
   }

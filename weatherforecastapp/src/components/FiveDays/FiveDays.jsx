@@ -1,41 +1,65 @@
 import React, { Component } from "react";
 import SingleDay from "../SingleDay/SingleDay";
+import HourlyData from "../HourlyData/HourlyData";
 import style from "./FiveDays.module.css";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 
 class FiveDays extends Component {
   state = {
-    isLoading: false,
-    arrOfChosenDay: []
+    hourlyData: []
+  };
+  onButtonClick = async e => {
+    const list = this.props.weatherFor5days.list.slice(1, 6);
+    const id = e.target.id;
+    const startDay = moment
+      .unix(id)
+      .startOf("day")
+      .format("X");
+    const endDay = moment
+      .unix(id)
+      .endOf("day")
+      .format("X");
+    let hourlyData = list
+      .map(el =>
+        el.forecast.filter(item => item.dt <= endDay && item.dt > startDay)
+      )
+      .reduce((acc, el) => acc.concat(el), []);
+    await this.setState({
+      hourlyData
+    });
+
+    console.log(this.state);
   };
 
-  componentDidMount() {
-    this.props.fetchFor5daysByLocation();
-  }
-
   render() {
-    const arrOfFiveDayWeatherObject = this.props.weatherFor5days
-      .arrOfFiveDayWeatherObject;
+    const list = this.props.weatherFor5days.list;
+    const { hourlyData } = this.state;
 
-    console.log(arrOfFiveDayWeatherObject);
+    console.log(list);
     return (
       <>
-        {arrOfFiveDayWeatherObject && (
+        {list && (
           <div className={style.wrapper}>
             <div className={style.divFiveDays}>
-              {arrOfFiveDayWeatherObject.slice(1, 6).map(el => (
+              {list.slice(1, 6).map(el => (
                 <SingleDay
-                  data={this.props.weatherFor5days}
+                  key={uuidv4()}
+                  onClick={this.onButtonClick}
+                  data={list}
                   minTemp={Math.round(
-                    Math.min(...el.map(el => el.main.temp_min))
+                    Math.min(...el.forecast.map(el => el.main.temp_min))
                   )}
                   maxTemp={Math.round(
-                    Math.max(...el.map(el => el.main.temp_max))
+                    Math.max(...el.forecast.map(el => el.main.temp_max))
                   )}
-                  icon={el.map(item => item.weather[0].icon)}
-                  date={el[0] && el[0].dt}
+                  icon={el.forecast.map(item => item.weather[0].icon)}
+                  date={el.date}
                 />
               ))}
             </div>
+
+            <HourlyData hourlyData={hourlyData} />
           </div>
         )}
       </>

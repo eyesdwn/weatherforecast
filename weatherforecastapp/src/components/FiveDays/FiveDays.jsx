@@ -10,7 +10,7 @@ class FiveDays extends Component {
     hourlyData: []
   };
   onButtonClick = async e => {
-    const list = this.props.weatherFor5days.list.slice(1, 6);
+    const list = this.props.weatherFor5days.list;
     const id = e.target.id;
     const startDay = moment
       .unix(id)
@@ -34,20 +34,20 @@ class FiveDays extends Component {
       behavior: "smooth"
     });
 
-    console.log(this.state);
+    console.log(id);
   };
 
   render() {
     const list = this.props.weatherFor5days.list;
     const { hourlyData } = this.state;
 
-    console.log(list);
+    // console.log(list);
     return (
       <>
         {list && (
           <div className={style.wrapper}>
             <div className={style.divFiveDays}>
-              {list.slice(1, 6).map(el => (
+              {list.map(el => (
                 <SingleDay
                   key={uuidv4()}
                   onClick={this.onButtonClick}

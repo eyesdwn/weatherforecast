@@ -1,5 +1,6 @@
 .moreInfo {
   width: 100%;
+  padding-top: 20px;
   overflow-x: auto;
   font-family: sans-serif;
   color: rgb(58, 57, 57);
@@ -7,7 +8,7 @@
 
 .day {
   display: flex;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(58, 57, 57, 0.5);
   padding: 0 17px;
   justify-content: space-between;
   margin-top: 10px;

@@ -1,6 +1,7 @@
 .divFiveDays {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   margin: 0 auto;
 }
@@ -8,5 +9,5 @@
 .wrapper {
   margin: 0 auto;
   padding-top: 50px;
-  width: 770px;
+  width: 792px;
 }

@@ -1,13 +1,13 @@
 .appHeader {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
   margin: 20px;
+  width: 739px;
 }
-/* 
-.main {
-  display: flex;
-  justify-content: flex-start;
-  padding-top: 50px;
-  width: 1200px;
-  margin: 0 auto;
-} */
+
+@media (min-width: 1024px) {
+  .appHeader {
+    position: relative;
+    margin: 20px;
+    width: auto;
+  }
+}

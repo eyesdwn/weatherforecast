@@ -19,22 +19,22 @@ const HourlyData = ({ hourlyData }) => {
           />
           <p className={style.tempInfo}>{Math.round(el.main.temp)}&#176;</p>
 
-          <p className={style.iconWrapper}>
+          <div className={style.iconWrapper}>
             <img className={style.iconImg} src={pressureImg} alt="pressure" />
             <p className={style.dataDetail}>
               {Math.round(el.main.pressure / 1.3)} mm
             </p>
-          </p>
+          </div>
 
-          <p className={style.iconWrapper}>
+          <div className={style.iconWrapper}>
             <img className={style.iconImg} src={humidityImg} alt="humidity" />
             <p className={style.dataDetail}>{el.main.humidity} %</p>
-          </p>
+          </div>
 
-          <p className={style.iconWrapper}>
+          <div className={style.iconWrapper}>
             <img className={style.iconImg} src={windImg} alt="wind" />
             <p className={style.dataDetail}>{el.wind.speed} m/s</p>
-          </p>
+          </div>
         </div>
       ))}
     </div>

@@ -15,24 +15,29 @@ const CurrentWeather = ({ weather }) => {
 
       <ul className={style.weatherDataList}>
         <li className={style.listItem}>
-          <p>Visibility</p> <p>{weather.visibility} meters</p>
+          <p className={style.margin}>Visibility</p>{" "}
+          <p className={style.margin}>{weather.visibility} meters</p>
         </li>
         <li className={style.listItem}>
-          <p>Feels Like</p> <p>{weather.feelsLike}℃</p>
+          <p className={style.margin}>Feels Like</p>{" "}
+          <p className={style.margin}>{weather.feelsLike}℃</p>
         </li>
         <li className={style.listItem}>
-          <p>Pressure</p> <p>{weather.pressure} hPa</p>
+          <p className={style.margin}>Pressure</p>{" "}
+          <p className={style.margin}>{weather.pressure} hPa</p>
         </li>
         <li className={style.listItem}>
-          <p>Humidity</p> <p>{weather.humidity} %</p>
+          <p className={style.margin}>Humidity</p>{" "}
+          <p className={style.margin}>{weather.humidity} %</p>
         </li>
         <li className={style.listItem}>
-          <p>Wind</p> <p>{weather.wind} meter/sec</p>
+          <p className={style.margin}>Wind</p>{" "}
+          <p className={style.margin}>{weather.wind} meter/sec</p>
         </li>
         <li className={style.listItem}>
-          <p>Sunrise</p>
+          <p className={style.margin}>Sunrise</p>
 
-          <p>
+          <p className={style.margin}>
             {(weather.sunriseHours < 10 && `0${weather.sunriseHours}`) ||
               weather.sunriseHours}
             :
@@ -41,8 +46,8 @@ const CurrentWeather = ({ weather }) => {
           </p>
         </li>
         <li className={style.listItem}>
-          <p>Sunset</p>
-          <p>
+          <p className={style.margin}>Sunset</p>
+          <p className={style.margin}>
             {(weather.sunsetHours < 10 && `0${weather.sunsetHours}`) ||
               weather.sunsetHours}
             :

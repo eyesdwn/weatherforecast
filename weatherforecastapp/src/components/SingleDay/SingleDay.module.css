@@ -1,25 +1,38 @@
+.cardsWrapper {
+  text-decoration: none;
+}
 .singleDayCard {
   display: flex;
   font-family: sans-serif;
   color: rgb(58, 57, 57);
   flex-direction: column;
-  margin: 1rem;
+  margin: 5px;
   border: 1px solid transparent;
   text-align: center;
   padding: 20px 15px 5px 15px;
   width: 90px;
   background-color: rgba(187, 152, 152, 0.4);
 }
-
-.singleDayCard:hover {
-  border: 1px solid rgb(58, 57, 57, 0.5);
+.linkButton {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* text-decoration: underline; */
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
-/* .single_day_card:active {
-  border: 1px solid rgb(58, 57, 57, 0.5);
-} */
 
-.singleDayCard:hover .btnMoreInfo {
-  color: rgb(58, 57, 57);
+.linkButton:hover,
+.linkButton:focus {
+  text-decoration: none;
+}
+.singleDayCard:hover {
+  border: 1px solid rgb(58, 57, 57, 0.2);
+  background-color: rgba(187, 152, 152, 0.2);
+  transition: all 400ms ease-out;
 }
 
 .p_temp {
@@ -77,23 +90,3 @@
   font-weight: 500;
   opacity: 1;
 }
-
-.btnMoreInfo {
-  /* display: none; */
-  background: transparent;
-  border: transparent;
-  border-bottom: 1px solid transparent;
-  padding: 5px 0;
-  /* padding: ; */
-  font-size: 15px;
-  font-family: sans-serif;
-  font-weight: 300;
-  color: transparent;
-  width: 74px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
-/* .btn_more_info:hover {
-  border-bottom: 1px solid rgb(58, 57, 57, 0.7);
-} */
